@@ -13,7 +13,7 @@ Basic Requirement Selenium module, and Web driver for chrome
 ============================================================================"""
 from __future__ import print_function
 import time
-from Tkinter import Frame, Tk, Label, Entry, E, Button, LEFT
+from tkinter import Frame, Tk, Label, Entry, E, Button, LEFT
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 
