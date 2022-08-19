@@ -8,3 +8,6 @@ Note: Please put same station name as well as date mentioned in IRCTC.
 Basic Requirement Selenium module, and Web driver for chrome
 
 For Captcha , Waiting timing is provided. Provide it witin 10s so everything will work fast and properly.
+
+Please Use latest chrome extension for script to work.
+As well Script need modification as webpage has been changed over the time.
