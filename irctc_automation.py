@@ -3,50 +3,47 @@ INFORMATION ABOUT CODE         Coding: ISO 9001:2015
 ===============================================================================
 IRCTC Automation with GUI
 For booking Tatkal or General ticket with COD option.(Verified)
-Change tkinker name in Python 2
 Author: Prajinkya Pimpalghare
 Date: 2-November-2017
 Version: 1.0
-Input Variable: From GUI. All fields are manditory
-Note: Please put same station name as well as date mentioned in IRCTC.
+Input Variable: From GUI. All fields are mandatory
+Note: Please put the same station name as well as date mentioned in IRCTC.
 Basic Requirement Selenium module, and Web driver for chrome
 ============================================================================"""
-from __future__ import print_function
 import time
-from Tkinter import Frame, Tk, Label, Entry, E, Button, LEFT
+from tkinter import Tk, Label, Entry, Button, LEFT
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 
-
-class BookingGui(Frame, object):
+class BookingGui:
     def __init__(self, master, labels):
         """
         For Creating interactive GUI for IRCTC automation
         :param master:
         :param labels:
         """
-        super(BookingGui, self).__init__(master)
+        self.master = master
         self.label = labels
-        self.passanger = ["PassengersDetail:", "Psg:One", "Psg:Two", "Psg:Three", "Psg:Four"]
+        self.passenger = ["PassengersDetail:", "Psg:One", "Psg:Two", "Psg:Three", "Psg:Four"]
         self.entry = {}
         self.values = {}
 
     def main_gui(self):
         """
-        For creating interactive GUI for IRCTC Automation
+        For creating an interactive GUI for IRCTC Automation
         """
         for label_index, label_value in zip(range(1, 10), self.label):
-            Label(self, text=label_value).grid(row=label_index, column=0)
-            self.entry[label_value] = Entry(self, show="*") if label_value is "Password" else Entry(self)
+            Label(self.master, text=label_value).grid(row=label_index, column=0)
+            self.entry[label_value] = Entry(self.master, show="*") if label_value == "Password" else Entry(self.master)
             self.entry[label_value].grid(row=label_index, column=1)
-        for passenger_index, passenger_label in zip(range(0, 5), self.passanger):
-            Label(self, text=passenger_label).grid(row=label_index + 1, column=passenger_index)
+        for passenger_index, passenger_label in zip(range(0, 5), self.passenger):
+            Label(self.master, text=passenger_label).grid(row=label_index + 1, column=passenger_index)
         for index, value in zip(range(label_index + 2, 14), self.label[label_index + 1:]):
-            Label(self, text=value).grid(row=index, column=0)
+            Label(self.master, text=value).grid(row=index, column=0)
             for extra_index in range(0, 4):
-                self.entry[value + str(extra_index)] = Entry(self)
+                self.entry[value + str(extra_index)] = Entry(self.master)
                 self.entry[value + str(extra_index)].grid(row=index, column=extra_index + 1)
-        Button(self, text="Book Tatkal Ticket", command=self._login_btn_clicked).grid(row=5, column=3)
+        Button(self.master, text="Book Tatkal Ticket", command=self._login_btn_clicked).grid(row=5, column=3)
 
     def _login_btn_clicked(self):
         """
@@ -60,11 +57,10 @@ class BookingGui(Frame, object):
         booking = Booking(self.values)
         booking.main()
 
-
-class Booking(object):
+class Booking:
     def __init__(self, values):
         """
-        It will hold the main class for executing crome Browser
+        It will hold the main class for executing Chrome Browser
         :param values:
         """
         self.browser = None
@@ -72,7 +68,7 @@ class Booking(object):
 
     def main(self):
         """
-        It will be having main script for crome automation
+        It will be having the main script for Chrome automation
         """
         try:
             self.browser = webdriver.Chrome()
@@ -109,7 +105,6 @@ class Booking(object):
             exit(0)
         except BaseException as error:
             raise error
-
 
 if __name__ == '__main__':
     FIELDS = ["UserID", "Password", "TrainNo", "FromStation", "ToStation", "Date", "Class", "Quota",
