@@ -11,7 +11,7 @@ For Captcha , Waiting timing is provided. Provide it witin 10s so everything wil
 
 Please Use latest chrome extension for script to work.
 As well Script need modification as webpage has been changed over the time.
-
+![GUI](https://github.com/PrajinkyaPimpalghare/IRCTC-Automation-Tatkal-and-General-Ticket-Booking-/blob/master/GUI.PNG)
 # IRCTC Automation with GUI using Selenium and Python
 
 ## Overview
