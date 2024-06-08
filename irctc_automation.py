@@ -11,17 +11,18 @@ Note: Please put the same station name as well as date mentioned in IRCTC.
 Basic Requirement Selenium module, and Web driver for chrome
 ============================================================================"""
 import time
-from tkinter import Tk, Label, Entry, Button, LEFT
+from tkinter import Frame, Tk, Label, Entry, Button, LEFT
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 
-class BookingGui:
+class BookingGui(Frame):
     def __init__(self, master, labels):
         """
         For Creating interactive GUI for IRCTC automation
         :param master:
         :param labels:
         """
+        super().__init__(master)
         self.master = master
         self.label = labels
         self.passenger = ["PassengersDetail:", "Psg:One", "Psg:Two", "Psg:Three", "Psg:Four"]
@@ -72,7 +73,7 @@ class Booking:
         """
         try:
             self.browser = webdriver.Chrome()
-            self.browser.get("https://www.irctc.co.in/eticketing/loginHome.jsf")
+            self.browser.get("https://www.irctc.co.in/nget/train-search")
             login_page = self.browser.find_element_by_id("loginFormId")
             login_page.find_element_by_id("usernameId").send_keys(self.values["UserID"])
             login_page.find_element_by_name("j_password").send_keys(self.values["Password"])
